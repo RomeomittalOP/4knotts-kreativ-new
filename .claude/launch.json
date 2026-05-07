@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "4knotts-frontend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "rootDir": "C:\\Users\\ASUS\\4knotts-kreativ\\frontend",
+      "port": 3000
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+﻿*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #000000;
+  --surface: rgba(255, 255, 255, 0.03);
+  --border: rgba(255, 255, 255, 0.08);
+  --accent: #e8141e;
+  --accent-dim: rgba(232, 20, 30, 0.15);
+  --purple: #d4d4d8;
+  --purple-dim: rgba(212, 212, 216, 0.15);
+  --gradient: linear-gradient(135deg, #e8141e, #d4d4d8);
+  --text: #ffffff;
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --glow-red: 0 0 30px rgba(232, 20, 30, 0.4);
+  --glow-purple: 0 0 30px rgba(212, 212, 216, 0.4);
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+}
+
+html, body {
+  width: 100%;
+  background: #000;
+  color: var(--text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+input, textarea {
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
