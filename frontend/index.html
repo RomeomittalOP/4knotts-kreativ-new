@@ -1271,12 +1271,13 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
       </div>
 
       <button class="auth-submit" type="submit"><span class="auth-only-login">Log in</span><span class="auth-only-signup">Kreate akount</span></button>
-      <div class="auth-ok" id="authOk"><span>✓</span> <span id="authOkTxt">Logged in (demo)</span></div>
+      <div class="auth-ok" id="authOk"><span>✓</span> <span id="authOkTxt">Logged in</span></div>
+      <div id="authErrMsg" style="display:none;margin-top:12px;font-family:var(--mono);font-size:.62rem;letter-spacing:.04em;color:#ff6b6b;text-align:center"></div>
     </form>
 
     <div class="auth-divider">or kontinue with</div>
     <div class="auth-soc">
-      <button type="button">
+      <button type="button" id="authGoogle">
         <svg viewBox="0 0 24 24"><path fill="#fff" d="M21.35 11.1H12v2.9h5.35c-.25 1.5-1.7 4.4-5.35 4.4a5.9 5.9 0 010-11.8c1.7 0 2.85.72 3.5 1.35l2.4-2.3C16.9 4.2 14.7 3.3 12 3.3a8.7 8.7 0 100 17.4c5 0 8.3-3.5 8.3-8.45 0-.57-.06-1-.15-1.45z"/></svg>
         Google
       </button>
@@ -1339,10 +1340,25 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
   ov.addEventListener('mousedown',e=>{if(e.target===ov)close();});
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ov.classList.contains('open'))close();});
   document.querySelectorAll('[data-auth-switch]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.authSwitch)));
-  // validation + demo submit
+  // validation + Firebase auth
+  const errMsg=document.getElementById('authErrMsg'),submitBtn=form.querySelector('.auth-submit');
   const mark=(id,bad)=>document.getElementById(id).closest('.auth-field').classList.toggle('err',bad);
-  form.addEventListener('submit',e=>{
-    e.preventDefault();clearErrs();
+  const showErr=t=>{if(!errMsg)return;errMsg.textContent=t;errMsg.style.display=t?'block':'none';};
+  const niceErr=code=>({
+    'auth/email-already-in-use':'That email already has an akount. Try logging in.',
+    'auth/invalid-email':'That email looks invalid.',
+    'auth/invalid-credential':'Wrong email or password.',
+    'auth/wrong-password':'Wrong email or password.',
+    'auth/user-not-found':'No akount with that email. Sign up first.',
+    'auth/weak-password':'Password is too weak (min 6 chars).',
+    'auth/popup-closed-by-user':'Google sign-in kancelled.',
+    'auth/network-request-failed':'Network error — check your konnection.'
+  }[code]||'Something went wrong. Try again.');
+
+  const waitAuth=()=>new Promise(res=>{(function p(){window.KAuth?res():setTimeout(p,80);})();});
+
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();clearErrs();showErr('');
     const signup=modal.classList.contains('mode-signup');
     const email=document.getElementById('afEmail').value.trim();
     const pass=document.getElementById('afPass').value;
@@ -1352,31 +1368,43 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
     if(pass.length<6){mark('afPass',1);bad=true;}
     if(signup&&document.getElementById('afPass2').value!==pass){mark('afPass2',1);bad=true;}
     if(bad)return;
-    const name=(signup?document.getElementById('afName').value.trim():'')||email.split('@')[0];
-    okTxt.textContent=signup?'Akount kreated — opening dashboard…':'Logged in — opening dashboard…';
-    ok.classList.add('show');
-    setTimeout(()=>{login(name);close();},700);
+    const name=document.getElementById('afName').value.trim();
+    submitBtn.disabled=true;okTxt.textContent=signup?'Kreating akount…':'Logging in…';ok.classList.add('show');
+    try{
+      await waitAuth();
+      if(signup)await window.KAuth.signup(email,pass,name);
+      else await window.KAuth.login(email,pass);
+      // onAuthChange will open the dashboard + close modal
+    }catch(err){
+      ok.classList.remove('show');showErr(niceErr(err&&err.code));
+    }finally{submitBtn.disabled=false;}
   });
 
-  /* ── dashboard wiring ── */
+  // Google sign-in
+  document.getElementById('authGoogle')?.addEventListener('click',async()=>{
+    showErr('');
+    try{await waitAuth();await window.KAuth.google();}
+    catch(err){showErr(niceErr(err&&err.code));}
+  });
+
+  /* ── dashboard wiring (driven by Firebase auth state) ── */
   const dash=document.getElementById('dash'),dashName=document.getElementById('dashName');
   const openDash=()=>{dash.classList.add('open');document.body.style.overflow='hidden';dash.scrollTop=0;};
   const closeDash=()=>{dash.classList.remove('open');document.body.style.overflow='';};
-  function login(name){
-    try{localStorage.setItem('kreativ_user',name);}catch(e){}
+  // called by the Firebase module on auth state change
+  let firstAuth=true;
+  window.kUILogin=(name)=>{
     document.body.classList.add('logged-in');
-    if(dashName)dashName.textContent=name;
-    openDash();
-  }
-  function logout(){
-    try{localStorage.removeItem('kreativ_user');}catch(e){}
-    document.body.classList.remove('logged-in');closeDash();
-  }
+    if(dashName)dashName.textContent=name||'there';
+    close();
+    if(firstAuth){firstAuth=false;}   // don't auto-pop dashboard on page-load restore
+    else openDash();
+    ok.classList.remove('show');
+  };
+  window.kUILogout=()=>{firstAuth=false;document.body.classList.remove('logged-in');closeDash();};
   document.querySelectorAll('[data-dash-open]').forEach(b=>b.addEventListener('click',openDash));
   document.getElementById('dashClose')?.addEventListener('click',closeDash);
-  document.getElementById('dashLogout')?.addEventListener('click',logout);
-  // restore session
-  try{const u=localStorage.getItem('kreativ_user');if(u){document.body.classList.add('logged-in');if(dashName)dashName.textContent=u;}}catch(e){}
+  document.getElementById('dashLogout')?.addEventListener('click',async()=>{try{await waitAuth();await window.KAuth.logout();}catch(e){}});
 })();
 
 /* ── FAQ ACCORDION ───────────────────────────── */
@@ -1586,6 +1614,46 @@ const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
   const orig=el.textContent;let iv;
   el.closest('.svc').addEventListener('mouseenter',()=>{let i=0;iv=setInterval(()=>{el.textContent=orig.split('').map((c,j)=>j<i?c:c===' '?' ':chars[Math.floor(Math.random()*chars.length)]).join('');if(i++>=orig.length)clearInterval(iv);},38)});
   el.closest('.svc').addEventListener('mouseleave',()=>{clearInterval(iv);el.textContent=orig});
+});
+</script>
+
+<!-- ══ FIREBASE AUTH (real login/signup) ═══════════ -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getAuth, setPersistence, browserLocalPersistence, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAJ57GMAuZfJZHuxk6znWjCRSHhov3l87M",
+  authDomain: "kreativ-by-4-knotts.firebaseapp.com",
+  projectId: "kreativ-by-4-knotts",
+  storageBucket: "kreativ-by-4-knotts.firebasestorage.app",
+  messagingSenderId: "224866350696",
+  appId: "1:224866350696:web:b890444abd8aee12a2eddd",
+  measurementId: "G-MC6QDM9DJY"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence).catch(()=>{});
+
+window.KAuth = {
+  signup: async (email, pass, name) => {
+    const cred = await createUserWithEmailAndPassword(auth, email, pass);
+    if (name) await updateProfile(cred.user, { displayName: name });
+    return cred;
+  },
+  login:  (email, pass) => signInWithEmailAndPassword(auth, email, pass),
+  google: () => signInWithPopup(auth, new GoogleAuthProvider()),
+  logout: () => signOut(auth)
+};
+
+onAuthStateChanged(auth, user => {
+  if (user) {
+    const name = user.displayName || (user.email ? user.email.split('@')[0] : 'there');
+    window.kUILogin && window.kUILogin(name);
+  } else {
+    window.kUILogout && window.kUILogout();
+  }
 });
 </script>
 </body>
