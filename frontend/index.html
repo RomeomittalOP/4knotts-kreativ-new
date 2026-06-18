@@ -472,6 +472,12 @@ section{padding:clamp(90px,10vw,150px) 0;position:relative;z-index:1}
 .wi-title{font-family:var(--disp);font-size:2.1rem;letter-spacing:.04em;color:var(--white);line-height:1.05}
 .wi-soon{position:absolute;top:18px;left:18px;z-index:3;font-family:var(--mono);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);border:1px solid var(--lv);background:rgba(255,38,38,.1);padding:.45em .85em;display:flex;align-items:center;gap:7px;backdrop-filter:blur(4px)}
 .wi-soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--volt);animation:blink 1.6s ease infinite}
+.wi-cs{position:absolute;top:0;left:0;right:0;z-index:4;overflow:hidden;padding:8px 0;background:rgba(255,38,38,.12);border-bottom:1px solid var(--lv);backdrop-filter:blur(3px)}
+.wi-cs-row{display:flex;width:max-content;animation:wicsroll 9s linear infinite}
+.wi:hover .wi-cs-row{animation-play-state:paused}
+.wi-cs-row span{font-family:var(--mono);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--volt);white-space:nowrap;display:inline-flex;align-items:center}
+.wi-cs-row span::after{content:"✦";margin:0 16px;opacity:.55}
+@keyframes wicsroll{to{transform:translateX(-50%)}}
 .wi-logo{position:relative;z-index:1;width:84%;max-width:340px;aspect-ratio:1;object-fit:contain;display:block;margin:auto;transition:transform .6s var(--e)}
 .wi:hover .wi-logo{transform:scale(1.05)}
 .wi-logo--screen{mix-blend-mode:screen}
@@ -881,21 +887,21 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
     </div>
     <div class="work-track" id="wt">
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1a0606,#2a0808);position:absolute;inset:0"></div>
-        <div class="wi-soon">Coming soon</div>
+        <div class="wi-cs"><div class="wi-cs-row"><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span></div></div>
         <img class="wi-logo wi-logo--screen" src="/knottix.png" alt="Knottix AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
       <div class="wi-label"><div class="wi-cat">AI Platform · In development</div><div class="wi-title">KNOTTIX</div></div></div>
 
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#160808,#241010);position:absolute;inset:0"></div>
-        <div class="wi-soon">Coming soon</div>
+        <div class="wi-cs"><div class="wi-cs-row"><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span></div></div>
         <img class="wi-logo wi-logo--screen" src="/knottbox.png" alt="Knottbox AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
       <div class="wi-label"><div class="wi-cat">AI Product · In development</div><div class="wi-title">KNOTTBOX</div></div></div>
 
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1c0707,#2e0a0a);position:absolute;inset:0"></div>
-        <div class="wi-soon">Coming soon</div>
+        <div class="wi-cs"><div class="wi-cs-row"><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span><span>Coming soon</span></div></div>
         <img class="wi-logo" src="/kreativ-ai.png" alt="Kreativ AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
@@ -1645,7 +1651,20 @@ setInterval(()=>{const el=document.getElementById('st-txt');if(!el)return;el.sty
 
 /* ── WORK TRACK DRAG ─────────────────────────── */
 const wt=document.getElementById('wt');
-if(wt){let dn=false,sx=0,sl=0;wt.addEventListener('mousedown',e=>{dn=true;sx=e.pageX-wt.offsetLeft;sl=wt.scrollLeft;wt.style.cursor='grabbing'});document.addEventListener('mouseup',()=>{dn=false;wt.style.cursor='';});document.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();wt.scrollLeft=sl-(e.pageX-wt.offsetLeft-sx);});}
+if(wt){let dn=false,sx=0,sl=0;wt.addEventListener('mousedown',e=>{dn=true;sx=e.pageX-wt.offsetLeft;sl=wt.scrollLeft;wt.style.cursor='grabbing'});document.addEventListener('mouseup',()=>{dn=false;wt.style.cursor='';});document.addEventListener('mousemove',e=>{if(!dn)return;e.preventDefault();wt.scrollLeft=sl-(e.pageX-wt.offsetLeft-sx);});
+
+  /* auto-slideshow */
+  if(!reduce){
+    const cards=[...wt.children];let i=0,timer=null;
+    const go=()=>{i=(i+1)%cards.length;wt.scrollTo({left:cards[i].offsetLeft-wt.offsetLeft,behavior:'smooth'});};
+    const play=()=>{stop();timer=setInterval(go,2600);};
+    const stop=()=>{if(timer){clearInterval(timer);timer=null;}};
+    wt.addEventListener('mouseenter',stop);
+    wt.addEventListener('mouseleave',play);
+    wt.addEventListener('mousedown',stop);
+    play();
+  }
+}
 
 /* ── SCRAMBLE ON SERVICE NAMES ───────────────── */
 const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
