@@ -472,6 +472,9 @@ section{padding:clamp(90px,10vw,150px) 0;position:relative;z-index:1}
 .wi-title{font-family:var(--disp);font-size:2.1rem;letter-spacing:.04em;color:var(--white);line-height:1.05}
 .wi-soon{position:absolute;top:18px;left:18px;z-index:3;font-family:var(--mono);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);border:1px solid var(--lv);background:rgba(255,38,38,.1);padding:.45em .85em;display:flex;align-items:center;gap:7px;backdrop-filter:blur(4px)}
 .wi-soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--volt);animation:blink 1.6s ease infinite}
+.wi-logo{position:relative;z-index:1;width:84%;max-width:340px;aspect-ratio:1;object-fit:contain;display:block;margin:auto;transition:transform .6s var(--e)}
+.wi:hover .wi-logo{transform:scale(1.05)}
+.wi-logo--screen{mix-blend-mode:screen}
 .wi-arr{position:absolute;top:20px;right:20px;width:38px;height:38px;border:1px solid rgba(255,38,38,.32);display:flex;align-items:center;justify-content:center;color:var(--volt);transform:rotate(-45deg);transition:transform .3s var(--e),background .3s}
 .wi:hover .wi-arr{transform:rotate(0);background:var(--volt);color:var(--void)}
 .drag-hint{display:flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--white3)}
@@ -697,7 +700,7 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
   <!-- top kicker -->
   <div class="hero-kicker">
     <div class="hero-tag-line"></div>
-    <span class="hero-tag-text">Tech + Creative Agency · Delhi, India · Est. 2020</span>
+    <span class="hero-tag-text">Tech + Creative Agency · Delhi, India · Est. 2025</span>
   </div>
 
   <!-- 16:9 slideshow stage -->
@@ -768,19 +771,19 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
     </div>
     <div class="about-vis rv d2">
       <div class="av">
-        <div class="av-n">50+</div>
+        <div class="av-n">10+</div>
         <div class="av-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L2 7l10 5 10-5-10-5zM2 12l10 5 10-5M2 17l10 5 10-5"/></svg></div>
         <div class="av-l">Projects live</div>
       </div>
       <div class="av">
-        <div class="av-n">12</div>
+        <div class="av-n">3</div>
         <div class="av-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.93 4.93l2.12 2.12M16.95 16.95l2.12 2.12M4.93 19.07l2.12-2.12M16.95 7.05l2.12-2.12"/></svg></div>
-        <div class="av-l">AI products</div>
+        <div class="av-l">AI products building</div>
       </div>
       <div class="av">
-        <div class="av-n">5</div>
+        <div class="av-n">6</div>
         <div class="av-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-        <div class="av-l">Years digital</div>
+        <div class="av-l">Months in</div>
       </div>
       <div class="av">
         <div class="av-n">98%</div>
@@ -879,39 +882,21 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
     <div class="work-track" id="wt">
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1a0606,#2a0808);position:absolute;inset:0"></div>
         <div class="wi-soon">Coming soon</div>
-        <svg style="width:58%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
-          <circle cx="80" cy="90" r="14" fill="rgba(255,38,38,.15)" stroke="#FF2626" stroke-width="2"/>
-          <circle cx="200" cy="90" r="14" fill="rgba(255,38,38,.15)" stroke="#FF2626" stroke-width="2"/>
-          <circle cx="140" cy="170" r="18" fill="rgba(255,38,38,.2)" stroke="#FF2626" stroke-width="2"/>
-          <circle cx="80" cy="250" r="14" fill="rgba(120,0,0,.2)" stroke="rgba(255,38,38,.6)" stroke-width="2"/>
-          <circle cx="200" cy="250" r="14" fill="rgba(120,0,0,.2)" stroke="rgba(255,38,38,.6)" stroke-width="2"/>
-          <path d="M80 90L140 170L200 90M80 250L140 170L200 250" stroke="rgba(255,38,38,.5)" stroke-width="2" stroke-dasharray="5 4"/>
-        </svg>
+        <img class="wi-logo wi-logo--screen" src="/knottix.png" alt="Knottix AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
       <div class="wi-label"><div class="wi-cat">AI Platform · In development</div><div class="wi-title">KNOTTIX</div></div></div>
 
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#160808,#241010);position:absolute;inset:0"></div>
         <div class="wi-soon">Coming soon</div>
-        <svg style="width:56%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
-          <path d="M140 50L230 100V200L140 250L50 200V100Z" fill="rgba(255,38,38,.06)" stroke="#FF2626" stroke-width="2"/>
-          <path d="M140 50L230 100L140 150L50 100Z" fill="rgba(255,38,38,.12)" stroke="rgba(255,38,38,.7)" stroke-width="2"/>
-          <path d="M140 150V250M50 100L140 150L230 100" stroke="rgba(255,38,38,.45)" stroke-width="2"/>
-          <rect x="120" y="175" width="40" height="30" rx="4" fill="rgba(255,38,38,.2)" stroke="#FF2626" stroke-width="1.5"/>
-        </svg>
+        <img class="wi-logo wi-logo--screen" src="/knottbox.png" alt="Knottbox AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
       <div class="wi-label"><div class="wi-cat">AI Product · In development</div><div class="wi-title">KNOTTBOX</div></div></div>
 
       <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1c0707,#2e0a0a);position:absolute;inset:0"></div>
         <div class="wi-soon">Coming soon</div>
-        <svg style="width:56%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
-          <circle cx="140" cy="160" r="90" fill="none" stroke="rgba(255,38,38,.25)" stroke-width="1.5" stroke-dasharray="6 5"/>
-          <circle cx="140" cy="160" r="55" fill="none" stroke="rgba(255,38,38,.5)" stroke-width="2"/>
-          <circle cx="140" cy="160" r="22" fill="rgba(255,38,38,.18)" stroke="#FF2626" stroke-width="2"/>
-          <circle cx="140" cy="160" r="6" fill="#FF2626"/>
-          <circle cx="140" cy="70" r="7" fill="#FF2626"/><circle cx="230" cy="160" r="7" fill="#FF2626"/><circle cx="140" cy="250" r="7" fill="#FF2626"/><circle cx="50" cy="160" r="7" fill="#FF2626"/>
-        </svg>
+        <img class="wi-logo" src="/kreativ-ai.png" alt="Kreativ AI"/>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
       <div class="wi-label"><div class="wi-cat">AI Orchestration · In development</div><div class="wi-title">KREATIV AI</div></div></div>
@@ -947,7 +932,7 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
 <div class="stats rv">
   <div class="wrap stats-grid">
     <div class="stat"><div class="stat-n" id="s1">—</div><div class="stat-l">Projects shipped</div></div>
-    <div class="stat"><div class="stat-n" id="s2">—</div><div class="stat-l">AI products live</div></div>
+    <div class="stat"><div class="stat-n" id="s2">—</div><div class="stat-l">AI products building</div></div>
     <div class="stat"><div class="stat-n" id="s3">—</div><div class="stat-l">Social reach managed</div></div>
     <div class="stat"><div class="stat-n" id="s4">—</div><div class="stat-l">Client satisfaction</div></div>
   </div>
@@ -1160,7 +1145,9 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
           <option>₹65k – ₹1.5L</option>
           <option>₹1.5L – ₹5L</option>
           <option>₹5L – ₹15L</option>
-          <option>₹15L+ / Custom retainer</option>
+          <option>₹15L – ₹50L</option>
+          <option>₹50L+</option>
+          <option>Custom / let's talk</option>
         </select>
       </div>
       <div class="cf-field">
@@ -1469,7 +1456,7 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
   const page=document.getElementById('startPage');if(!page)return;
   const chips=[...page.querySelectorAll('.plan-chip')];
   const budget=document.getElementById('cfBudget');
-  const budgetByPlan={starter:'Under ₹65k',growth:'₹1.5L – ₹5L',scale:'₹15L+ / Custom retainer'};
+  const budgetByPlan={starter:'Under ₹65k',growth:'₹1.5L – ₹5L',scale:"Custom / let's talk"};
   function selectPlan(plan){
     if(!plan)return;
     chips.forEach(c=>c.classList.toggle('sel',c.dataset.plan===plan));
@@ -1646,7 +1633,7 @@ else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e
 
 /* ── STAT COUNTERS ───────────────────────────── */
 function cu(el,n,suf,dur=1800){if(!el)return;const s=performance.now();function t(now){const p=Math.min((now-s)/dur,1),e=1-Math.pow(1-p,4);const v=n>100?Math.round(n*e):(+(n*e).toFixed(1));el.textContent=v+suf;if(p<1)requestAnimationFrame(t);}requestAnimationFrame(t);}
-if(!reduce){const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cu(document.getElementById('s1'),50,'+');cu(document.getElementById('s2'),12,'');cu(document.getElementById('s3'),2.4,'M+');cu(document.getElementById('s4'),98,'%');ob.disconnect();}}),{threshold:.5});const sb=document.querySelector('.stats');if(sb)ob.observe(sb);}
+if(!reduce){const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){cu(document.getElementById('s1'),10,'+');cu(document.getElementById('s2'),3,'');cu(document.getElementById('s3'),100,'K+');cu(document.getElementById('s4'),98,'%');ob.disconnect();}}),{threshold:.5});const sb=document.querySelector('.stats');if(sb)ob.observe(sb);}
 
 /* ── INK BLEED ───────────────────────────────── */
 function ib(el,e){el.style.setProperty('--mx',(e.offsetX/el.offsetWidth*100)+'%');el.style.setProperty('--my',(e.offsetY/el.offsetHeight*100)+'%');}
