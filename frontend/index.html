@@ -450,6 +450,8 @@ section{padding:clamp(90px,10vw,150px) 0;position:relative;z-index:1}
 .wi:hover .wi-label{transform:translateY(0)}
 .wi-cat{font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-bottom:5px}
 .wi-title{font-family:var(--disp);font-size:2.1rem;letter-spacing:.04em;color:var(--white);line-height:1.05}
+.wi-soon{position:absolute;top:18px;left:18px;z-index:3;font-family:var(--mono);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);border:1px solid var(--lv);background:rgba(255,38,38,.1);padding:.45em .85em;display:flex;align-items:center;gap:7px;backdrop-filter:blur(4px)}
+.wi-soon::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--volt);animation:blink 1.6s ease infinite}
 .wi-arr{position:absolute;top:20px;right:20px;width:38px;height:38px;border:1px solid rgba(255,38,38,.32);display:flex;align-items:center;justify-content:center;color:var(--volt);transform:rotate(-45deg);transition:transform .3s var(--e),background .3s}
 .wi:hover .wi-arr{transform:rotate(0);background:var(--volt);color:var(--void)}
 .drag-hint{display:flex;align-items:center;gap:12px;margin-top:26px;font-family:var(--mono);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--white3)}
@@ -705,7 +707,7 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
   <!-- bottom controls -->
   <div class="ss-controls">
     <div class="ss-btns">
-      <a class="btn btn--volt" href="#work"><span class="bb"></span><span class="bi">See our work</span></a>
+      <a class="btn btn--volt" href="https://4knotts-kreativ-next.vercel.app/" target="_blank" rel="noopener"><span class="bb"></span><span class="bi">See our work</span></a>
       <a class="btn btn--ghost" href="#contact"><span class="bb"></span><span class="bi">Start a project</span></a>
     </div>
     <div class="ss-dots" id="ssDots" aria-hidden="true">
@@ -855,71 +857,50 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
   <div class="wrap">
     <div class="work-head">
       <div>
-        <div class="sec-label">Selected work</div>
-        <div class="sec-h2">Built.<br><em>Deployed.</em><br>Performing.</div>
+        <div class="sec-label">In the lab</div>
+        <div class="sec-h2">Building<br><em>now.</em></div>
       </div>
-      <a class="btn btn--ghost rv d2" style="align-self:flex-end" href="#"><span class="bb"></span><span class="bi">All projects</span></a>
+      <a class="btn btn--ghost rv d2" style="align-self:flex-end" href="#contact"><span class="bb"></span><span class="bi">Get early akkess</span></a>
     </div>
     <div class="work-track" id="wt">
-      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#0e0420,#180545);position:absolute;inset:0"></div>
-        <svg style="width:56%;position:relative;z-index:1" viewBox="0 0 280 360" fill="none">
-          <rect x="40" y="60" width="200" height="240" rx="14" fill="rgba(120,0,0,.1)" stroke="rgba(120,0,0,.4)"/>
-          <circle cx="140" cy="180" r="60" fill="none" stroke="rgba(255,38,38,.45)" stroke-width="2" stroke-dasharray="6 4"/>
-          <circle cx="140" cy="180" r="30" fill="rgba(255,38,38,.08)" stroke="rgba(255,38,38,.7)" stroke-width="2"/>
-          <circle cx="140" cy="180" r="8" fill="#FF2626"/>
-          <path d="M90 120h100M90 150h80M90 220h100M90 250h60" stroke="rgba(120,0,0,.35)" stroke-width="2"/>
-        </svg>
-        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
-      </div>
-      <div class="wi-label"><div class="wi-cat">AI Product · SaaS · 2024</div><div class="wi-title">NeuralForm AI</div></div></div>
-
-      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#050e12,#0a1e24);position:absolute;inset:0"></div>
-        <svg style="width:60%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
-          <rect x="20" y="40" width="240" height="140" rx="8" fill="rgba(255,38,38,.05)" stroke="rgba(255,38,38,.25)"/>
-          <path d="M40 80h200M40 110h150M40 140h180" stroke="rgba(255,38,38,.3)" stroke-width="2.5"/>
-          <rect x="20" y="200" width="110" height="80" rx="6" fill="rgba(255,38,38,.07)" stroke="rgba(255,38,38,.2)"/>
-          <rect x="150" y="200" width="110" height="80" rx="6" fill="rgba(120,0,0,.07)" stroke="rgba(120,0,0,.2)"/>
-          <circle cx="75" cy="240" r="14" fill="rgba(255,38,38,.18)"/>
-          <circle cx="205" cy="240" r="14" fill="rgba(120,0,0,.18)"/>
-        </svg>
-        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
-      </div>
-      <div class="wi-label"><div class="wi-cat">Web Platform · Dashboard · 2024</div><div class="wi-title">Axiom Analytics</div></div></div>
-
-      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#0e0818,#1a0d2e);position:absolute;inset:0"></div>
-        <svg style="width:54%;position:relative;z-index:1" viewBox="0 0 260 320" fill="none">
-          <circle cx="130" cy="130" r="80" fill="none" stroke="rgba(120,0,0,.4)" stroke-width="2.5"/>
-          <circle cx="130" cy="130" r="55" fill="none" stroke="rgba(255,38,38,.2)" stroke-width="1.5" stroke-dasharray="5 5"/>
-          <circle cx="130" cy="130" r="28" fill="rgba(120,0,0,.14)"/>
-          <text x="130" y="138" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#8B0000" letter-spacing="4">BRAND</text>
-          <path d="M50 250h160M70 278h120" stroke="rgba(255,38,38,.35)" stroke-width="2.5"/>
-        </svg>
-        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
-      </div>
-      <div class="wi-label"><div class="wi-cat">Brand Identity · Strategy · 2023</div><div class="wi-title">Vortex Studio</div></div></div>
-
-      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#0a0e06,#142012);position:absolute;inset:0"></div>
-        <svg style="width:58%;position:relative;z-index:1" viewBox="0 0 280 340" fill="none">
-          <rect x="30" y="40" width="220" height="260" rx="28" fill="rgba(255,38,38,.05)" stroke="rgba(255,38,38,.25)"/>
-          <rect x="50" y="80" width="180" height="100" rx="8" fill="rgba(255,38,38,.07)"/>
-          <rect x="50" y="200" width="80" height="70" rx="8" fill="rgba(120,0,0,.09)"/>
-          <rect x="150" y="200" width="80" height="70" rx="8" fill="rgba(255,38,38,.07)"/>
-          <rect x="50" y="290" width="180" height="36" rx="18" fill="rgba(255,38,38,.7)"/>
-        </svg>
-        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
-      </div>
-      <div class="wi-label"><div class="wi-cat">Social + Mobile App · 2023</div><div class="wi-title">Bloom Social</div></div></div>
-
-      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#100808,#1e1008);position:absolute;inset:0"></div>
+      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1a0606,#2a0808);position:absolute;inset:0"></div>
+        <div class="wi-soon">Koming soon</div>
         <svg style="width:58%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
-          <path d="M140 40L260 140L140 280L20 140Z" fill="none" stroke="rgba(255,38,38,.28)" stroke-width="2"/>
-          <path d="M140 80L220 140L140 240L60 140Z" fill="rgba(255,38,38,.06)" stroke="rgba(255,38,38,.5)" stroke-width="1.5"/>
-          <circle cx="140" cy="140" r="22" fill="rgba(255,38,38,.12)" stroke="rgba(255,38,38,.65)" stroke-width="2"/>
-          <circle cx="140" cy="140" r="7" fill="#FF2626"/>
+          <circle cx="80" cy="90" r="14" fill="rgba(255,38,38,.15)" stroke="#FF2626" stroke-width="2"/>
+          <circle cx="200" cy="90" r="14" fill="rgba(255,38,38,.15)" stroke="#FF2626" stroke-width="2"/>
+          <circle cx="140" cy="170" r="18" fill="rgba(255,38,38,.2)" stroke="#FF2626" stroke-width="2"/>
+          <circle cx="80" cy="250" r="14" fill="rgba(120,0,0,.2)" stroke="rgba(255,38,38,.6)" stroke-width="2"/>
+          <circle cx="200" cy="250" r="14" fill="rgba(120,0,0,.2)" stroke="rgba(255,38,38,.6)" stroke-width="2"/>
+          <path d="M80 90L140 170L200 90M80 250L140 170L200 250" stroke="rgba(255,38,38,.5)" stroke-width="2" stroke-dasharray="5 4"/>
         </svg>
         <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
       </div>
-      <div class="wi-label"><div class="wi-cat">Kampaign · Motion · 2023</div><div class="wi-title">Prism Kampaign</div></div></div>
+      <div class="wi-label"><div class="wi-cat">AI Platform · In development</div><div class="wi-title">KNOTTIX</div></div></div>
+
+      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#160808,#241010);position:absolute;inset:0"></div>
+        <div class="wi-soon">Koming soon</div>
+        <svg style="width:56%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
+          <path d="M140 50L230 100V200L140 250L50 200V100Z" fill="rgba(255,38,38,.06)" stroke="#FF2626" stroke-width="2"/>
+          <path d="M140 50L230 100L140 150L50 100Z" fill="rgba(255,38,38,.12)" stroke="rgba(255,38,38,.7)" stroke-width="2"/>
+          <path d="M140 150V250M50 100L140 150L230 100" stroke="rgba(255,38,38,.45)" stroke-width="2"/>
+          <rect x="120" y="175" width="40" height="30" rx="4" fill="rgba(255,38,38,.2)" stroke="#FF2626" stroke-width="1.5"/>
+        </svg>
+        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
+      </div>
+      <div class="wi-label"><div class="wi-cat">AI Product · In development</div><div class="wi-title">KNOTTBOX</div></div></div>
+
+      <div class="wi"><div class="wi-art"><div class="wi-bg" style="background:linear-gradient(145deg,#1c0707,#2e0a0a);position:absolute;inset:0"></div>
+        <div class="wi-soon">Koming soon</div>
+        <svg style="width:56%;position:relative;z-index:1" viewBox="0 0 280 320" fill="none">
+          <circle cx="140" cy="160" r="90" fill="none" stroke="rgba(255,38,38,.25)" stroke-width="1.5" stroke-dasharray="6 5"/>
+          <circle cx="140" cy="160" r="55" fill="none" stroke="rgba(255,38,38,.5)" stroke-width="2"/>
+          <circle cx="140" cy="160" r="22" fill="rgba(255,38,38,.18)" stroke="#FF2626" stroke-width="2"/>
+          <circle cx="140" cy="160" r="6" fill="#FF2626"/>
+          <circle cx="140" cy="70" r="7" fill="#FF2626"/><circle cx="230" cy="160" r="7" fill="#FF2626"/><circle cx="140" cy="250" r="7" fill="#FF2626"/><circle cx="50" cy="160" r="7" fill="#FF2626"/>
+        </svg>
+        <div class="wi-arr"><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 10L10 2M2 2h8v8"/></svg></div>
+      </div>
+      <div class="wi-label"><div class="wi-cat">AI Orchestration · In development</div><div class="wi-title">KREATIV AI</div></div></div>
     </div>
     <div class="drag-hint rv d2"><div class="drag-bar"></div><span>Drag to explore</span></div>
   </div>
@@ -1017,7 +998,7 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
       <div class="price">
         <div class="price-name">Starter</div>
         <div class="price-desc">For a sharp launch — landing site or one focused build.</div>
-        <div class="price-amt"><b><em>₹</em>45k</b><span>/ project</span></div>
+        <div class="price-amt"><b><em>₹</em>65k</b><span>/ project</span></div>
         <ul class="price-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> 1-page or landing site</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Responsive + SEO basics</li>
@@ -1030,7 +1011,7 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
         <div class="price-badge">Most popular</div>
         <div class="price-name">Growth</div>
         <div class="price-desc">Full web build + brand & social — the komplete launch.</div>
-        <div class="price-amt"><b><em>₹</em>1.4L</b><span>/ project</span></div>
+        <div class="price-amt"><b><em>₹</em>1.5L</b><span>/ project</span></div>
         <ul class="price-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Multi-page web app</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6L9 17l-5-5"/></svg> Brand system + motion</li>
@@ -1397,13 +1378,21 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
   const closeDash=()=>{dash.classList.remove('open');document.body.style.overflow='';};
   // called by the Firebase module on auth state change
   let firstAuth=true;
-  window.kUILogin=(name)=>{
-    document.body.classList.add('logged-in');
-    if(dashName)dashName.textContent=name||'there';
-    close();
-    if(firstAuth){firstAuth=false;}   // don't auto-pop dashboard on page-load restore
-    else openDash();
+  window.kUILogin=(name,isAdmin,email)=>{
+    const isFreshLogin=!firstAuth;   // false only on the very first (session-restore) call
+    firstAuth=false;
     ok.classList.remove('show');
+    if(isAdmin){
+      document.body.classList.add('logged-in');
+      if(dashName)dashName.textContent=name||'there';
+      close();
+      if(isFreshLogin)openDash();    // don't auto-pop on page-load restore
+    }else{
+      document.body.classList.remove('logged-in');closeDash();
+      // logged in but no admin access → keep modal open with a note on fresh login
+      if(isFreshLogin)showErr('Logged in as '+(email||'')+' — the klient dashboard is admin-only right now.');
+      else close();
+    }
   };
   window.kUILogout=()=>{firstAuth=false;document.body.classList.remove('logged-in');closeDash();};
   document.querySelectorAll('[data-dash-open]').forEach(b=>b.addEventListener('click',openDash));
@@ -1651,10 +1640,18 @@ window.KAuth = {
   logout: () => signOut(auth)
 };
 
+// ── Admin allowlist: ONLY these emails get the client dashboard ──
+const ADMIN_EMAILS = [
+  "shubhammittal3555@gmail.com"
+  // , "second-admin@email.com"   // <-- add the 2nd admin email here
+].map(e => e.toLowerCase());
+
 onAuthStateChanged(auth, user => {
   if (user) {
+    const email = (user.email || '').toLowerCase();
+    const isAdmin = ADMIN_EMAILS.includes(email);
     const name = user.displayName || (user.email ? user.email.split('@')[0] : 'there');
-    window.kUILogin && window.kUILogin(name);
+    window.kUILogin && window.kUILogin(name, isAdmin, user.email);
   } else {
     window.kUILogout && window.kUILogout();
   }
