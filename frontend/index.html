@@ -668,6 +668,21 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
 .rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.42s}
 
 /* ═══════════════════ RESPONSIVE ══════════════════ */
+/* ─── MOBILE NAV MENU ─── */
+.mnav{position:fixed;inset:0;z-index:500;background:var(--void);display:flex;flex-direction:column;padding:84px 26px 36px;gap:4px;
+  transform:translateX(100%);transition:transform .4s var(--e);overflow-y:auto}
+.mnav.open{transform:none}
+.mnav-close{position:absolute;top:20px;right:22px;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:none;border:1px solid var(--line);color:var(--white);cursor:none}
+.mnav-lab{font-family:var(--mono);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--white3);margin:8px 4px 10px}
+.mnav a.mnav-link{font-family:var(--disp);font-size:2rem;font-weight:600;letter-spacing:-.01em;color:var(--white);padding:10px 4px;border-bottom:1px solid var(--line2)}
+.mnav a.mnav-link:active{color:var(--volt)}
+.mnav-actions{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.mnav-actions button,.mnav-actions a{width:100%;justify-content:center;text-align:center;font-family:var(--sans);font-size:.85rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:1em;cursor:none;border:1px solid var(--hair);background:transparent;color:var(--white)}
+.mnav-actions .m-cta{background:var(--volt);color:#fff;border-color:var(--volt)}
+.mnav-dash{display:none}
+body.logged-in .mnav-dash{display:block}
+body.logged-in .mnav-login{display:none}
+
 @media(max-width:1100px){
   .about-grid,.ai-grid,.proc-grid,.svc-head,.hero-top{grid-template-columns:1fr}
   .hero-disc{display:none}
@@ -678,15 +693,29 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
   .ft-top{grid-template-columns:1fr 1fr}
   .nav-links{display:none}
   .nav-tog{display:block}
+  /* declutter nav-right on mobile — actions move into the menu */
+  nav .status-tag,nav .nav-login,nav .nav-dash,nav .nav-cta-btn{display:none}
+  .nav-right{gap:10px}
 }
 @media(max-width:640px){
   .wrap{padding:0 20px}
   .svc-grid,.tc-grid{grid-template-columns:1fr}
   .plat-grid{grid-template-columns:repeat(2,1fr)}
   .stats-grid{grid-template-columns:1fr 1fr}
-  nav{padding:0 20px}
+  nav{padding:0 20px;height:60px}
   .hero-metrics{flex-direction:column;gap:18px}
   .hero-met{border-right:none;border-bottom:1px solid var(--line);padding:14px 0;text-align:left}
+  .hero-kicker{position:static;padding:80px 20px 0}
+  .ss-stage{position:relative;top:auto;left:auto;transform:none;width:100%;height:auto;aspect-ratio:auto;min-height:46vh;margin-top:10px}
+  .ss-slide{position:relative;padding:0}
+  .ss-slide:not(.active){display:none}
+  .ss-controls{position:static;margin:24px 20px 0;flex-direction:column;align-items:stretch;gap:14px}
+  .ss-btns{flex-direction:column}
+  .ss-btns .btn{justify-content:center}
+  .hero{height:auto;min-height:auto;padding-bottom:40px}
+  .scroll-ind{display:none}
+  .ss-word{font-size:clamp(2.4rem,13vw,4rem)}
+  .startp-h,.dash-hi{font-size:clamp(2.2rem,9vw,3rem)}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -767,11 +796,31 @@ footer{background:var(--void2);border-top:1px solid var(--line);padding:66px 0 3
     <button class="nav-login" type="button" data-auth-open="login">Login</button>
     <button class="nav-login nav-dash" type="button" data-dash-open>Dashboard</button>
     <a class="nav-cta-btn" href="#pricing">Start a project</a>
-    <button class="nav-tog" aria-label="Menu">
+    <button class="nav-tog" id="navTog" type="button" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 22 22" stroke="currentColor" stroke-width="1.5" fill="none"><path d="M3 7h16M3 11h16M3 15h16"/></svg>
     </button>
   </div>
 </nav>
+
+<!-- ══ MOBILE MENU ═════════════════════════════════ -->
+<div class="mnav" id="mnav">
+  <button class="mnav-close" id="mnavClose" type="button" aria-label="Close menu">
+    <svg width="16" height="16" viewBox="0 0 14 14" stroke="currentColor" stroke-width="1.7" fill="none"><path d="M2 2l10 10M12 2L2 12"/></svg>
+  </button>
+  <div class="mnav-lab">Menu</div>
+  <a class="mnav-link" href="#about">Studio</a>
+  <a class="mnav-link" href="#services">Services</a>
+  <a class="mnav-link" href="#work">Work</a>
+  <a class="mnav-link" href="#ai">AI Lab</a>
+  <a class="mnav-link" href="#pricing">Pricing</a>
+  <a class="mnav-link" href="#faq">FAQ</a>
+  <a class="mnav-link" href="#start" data-start-open>Contact</a>
+  <div class="mnav-actions">
+    <button class="mnav-login" type="button" data-auth-open="login">Login</button>
+    <button class="mnav-dash" type="button" data-dash-open>Dashboard</button>
+    <a class="m-cta" href="#pricing">Start a project</a>
+  </div>
+</div>
 
 <!-- ══ HERO (16:9 FULLSCREEN SLIDESHOW) ════════════ -->
 <section class="hero">
@@ -1468,6 +1517,18 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
   document.querySelectorAll('[data-dash-open]').forEach(b=>b.addEventListener('click',openDash));
   document.getElementById('dashClose')?.addEventListener('click',closeDash);
   document.getElementById('dashLogout')?.addEventListener('click',async()=>{try{await waitAuth();await window.KAuth.logout();}catch(e){}});
+})();
+
+/* ── MOBILE MENU ─────────────────────────────── */
+(function(){
+  const mnav=document.getElementById('mnav'),tog=document.getElementById('navTog');
+  if(!mnav||!tog)return;
+  const open=()=>{mnav.classList.add('open');document.body.style.overflow='hidden';};
+  const close=()=>{mnav.classList.remove('open');document.body.style.overflow='';};
+  tog.addEventListener('click',open);
+  document.getElementById('mnavClose')?.addEventListener('click',close);
+  mnav.querySelectorAll('a,button:not(#mnavClose)').forEach(el=>el.addEventListener('click',close));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))close();});
 })();
 
 /* ── THEME TOGGLE ────────────────────────────── */
