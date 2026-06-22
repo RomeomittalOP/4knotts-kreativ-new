@@ -1556,19 +1556,14 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('stuck',scrollY>60);d
     const isFreshLogin=!firstAuth;   // false only on the very first (session-restore) call
     firstAuth=false;
     ok.classList.remove('show');
-    if(isAdmin){
-      document.body.classList.add('logged-in');
-      if(dashName)dashName.textContent=name||'there';
-      close();
-      if(isFreshLogin)openDash();    // don't auto-pop on page-load restore
-    }else{
-      document.body.classList.remove('logged-in');closeDash();
-      // logged in but no admin access → keep modal open with a note on fresh login
-      if(isFreshLogin)showErr('Logged in as '+(email||'')+' — the client dashboard is admin-only right now.');
-      else close();
-    }
+    // every authenticated user is logged in and gets the client portal.
+    document.body.classList.add('logged-in');
+    document.body.classList.toggle('is-admin',!!isAdmin);   // admins flagged for future edit rights
+    if(dashName)dashName.textContent=name||'there';
+    close();
+    if(isFreshLogin)openDash();      // open on fresh login, not on page-load restore
   };
-  window.kUILogout=()=>{firstAuth=false;document.body.classList.remove('logged-in');closeDash();};
+  window.kUILogout=()=>{firstAuth=false;document.body.classList.remove('logged-in','is-admin');closeDash();};
   document.querySelectorAll('[data-dash-open]').forEach(b=>b.addEventListener('click',openDash));
   document.getElementById('dashClose')?.addEventListener('click',closeDash);
   document.getElementById('dashLogout')?.addEventListener('click',async()=>{try{await waitAuth();await window.KAuth.logout();}catch(e){}});
