@@ -43,23 +43,25 @@ export default async function handler(req, res) {
     let mailed = false;
     if (process.env.SMTP_USER && process.env.SMTP_PASS) {
       try {
+        const port = Number(process.env.SMTP_PORT || 465);
         const t = nodemailer.createTransport({
-          host: 'smtp.gmail.com', port: 465, secure: true,
+          host: process.env.SMTP_HOST || 'smtp.gmail.com',
+          port,
+          secure: process.env.SMTP_SECURE ? process.env.SMTP_SECURE === 'true' : port === 465,
           auth: { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
         });
+        const from = process.env.EMAIL_FROM || `Kreativ by 4 Knotts <${process.env.SMTP_USER}>`;
         const admin = process.env.ADMIN_EMAIL || process.env.SMTP_USER;
         // notify admin
         await t.sendMail({
-          from: `Kreativ by 4 Knotts <${process.env.SMTP_USER}>`,
-          to: admin, replyTo: email,
+          from, to: admin, replyTo: email,
           subject: `🆕 New project brief — ${name}`,
           text: `From: ${name} <${email}>\n\n${message}`,
           html: `<p><b>${name}</b> &lt;${email}&gt;</p><pre style="font-family:inherit;white-space:pre-wrap">${message}</pre>`,
         });
         // confirmation to client
         await t.sendMail({
-          from: `Kreativ by 4 Knotts <${process.env.SMTP_USER}>`,
-          to: email,
+          from, to: email,
           subject: `We got your brief — Kreativ by 4 Knotts`,
           text: `Hi ${name},\n\nThanks for reaching out to Kreativ. We've received your brief and will get back to you shortly.\n\n— Kreativ by 4 Knotts`,
         });
