@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Kreativ by 4Knotts — A full-stack creative agency. We turn brand noise into signal. Strategy, Story, Design, Digital. Delhi NCR.">
+<meta name="description" content="Kreativ by 4Knotts — A full-stack creative agency. We turn brand noise into signal. Strategy, Story, Design, Digital. Noida, UP.">
 <meta property="og:title" content="Kreativ by 4Knotts">
-<meta property="og:description" content="We turn brand noise into signal. A full-stack creative agency, Delhi NCR.">
+<meta property="og:description" content="We turn brand noise into signal. A full-stack creative agency, Noida, UP.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://kreativby4knotts.com/logo.png">
 <meta property="og:url" content="https://kreativby4knotts.com">
 <meta property="og:site_name" content="Kreativ by 4Knotts">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kreativ by 4Knotts">
-<meta name="twitter:description" content="We turn brand noise into signal. A full-stack creative agency, Delhi NCR.">
+<meta name="twitter:description" content="We turn brand noise into signal. A full-stack creative agency, Noida, UP.">
 <meta name="twitter:image" content="https://kreativby4knotts.com/logo.png">
 <meta name="theme-color" content="#050505">
 <title>Kreativ by 4Knotts — Brand Noise into Signal</title>
 <link rel="canonical" href="https://kreativby4knotts.com/">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kreativ by 4 Knotts","alternateName":["Kreativ","4 Knotts Kreativ"],"url":"https://kreativby4knotts.com/","logo":"https://kreativby4knotts.com/logo.png","email":"hello@kreativby4knotts.com","foundingDate":"2026","address":{"@type":"PostalAddress","addressLocality":"New Delhi","addressCountry":"IN"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Kreativ by 4 Knotts","alternateName":["Kreativ","4 Knotts Kreativ"],"url":"https://kreativby4knotts.com/","logo":"https://kreativby4knotts.com/logo.png","email":"interact@kreativby4knotts.com","foundingDate":"2026","address":{"@type":"PostalAddress","addressLocality":"Noida","addressCountry":"IN"}}</script>
 <link rel="icon" type="image/png" href="/favicon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -417,6 +417,35 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
   #hero-canvas { opacity: 1; }
   body::after { animation: none; }
 }
+
+/* ── AI product logos in cards ── */
+.work-logo{position:absolute;inset:0;width:74%;height:74%;margin:auto;object-fit:contain;z-index:2;transition:transform .5s var(--ease)}
+.work:hover .work-logo{transform:scale(1.05)}
+.work-logo--screen{mix-blend-mode:screen}
+
+/* ── IN DEVELOPMENT glitch popup ── */
+.dev-ov{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:24px;background:radial-gradient(circle at 50% 50%,rgba(40,0,0,.55),rgba(5,5,5,.96));backdrop-filter:blur(10px);overflow:hidden}
+.dev-ov.open{display:flex;animation:devFade .3s var(--ease)}
+@keyframes devFade{from{opacity:0}to{opacity:1}}
+.dev-ov::before{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,30,30,.05) 3px,transparent 4px);animation:devScan 7s linear infinite}
+@keyframes devScan{to{background-position:0 400px}}
+.dev-ov::after{content:'';position:absolute;left:0;right:0;height:38%;pointer-events:none;background:linear-gradient(transparent,rgba(255,30,30,.06),transparent);animation:devSweep 3.4s ease-in-out infinite}
+@keyframes devSweep{0%{transform:translateY(-120%)}100%{transform:translateY(320%)}}
+.dev-inner{position:relative;z-index:2;text-align:center;max-width:760px;animation:devFlick .12s steps(2) 3}
+@keyframes devFlick{50%{opacity:.6}}
+.dev-code{font-family:var(--f-mono);font-size:0.72rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--red);margin-bottom:1.4rem;display:inline-flex;align-items:center;gap:0.6rem;border:1px solid rgba(255,30,30,0.3);padding:0.5em 1.1em;background:rgba(255,30,30,0.06)}
+.dev-code::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--red);animation:blink 1s steps(1) infinite}
+.dev-glitch{position:relative;font-family:var(--f-disp);font-size:clamp(2.6rem,10vw,7rem);line-height:0.92;letter-spacing:0.02em;color:#fff;text-transform:uppercase}
+.dev-glitch::before,.dev-glitch::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden}
+.dev-glitch::before{color:#FF1E1E;clip-path:inset(0 0 58% 0);animation:devGT 2.2s infinite linear alternate-reverse}
+.dev-glitch::after{color:#2bd4ff;clip-path:inset(56% 0 0 0);animation:devGB 1.7s infinite linear alternate-reverse}
+@keyframes devGT{0%{transform:translate(-2px,0)}50%{transform:translate(3px,1px)}100%{transform:translate(-1px,0)}}
+@keyframes devGB{0%{transform:translate(2px,0)}50%{transform:translate(-3px,-1px)}100%{transform:translate(1px,0)}}
+.dev-proj{font-family:var(--f-mono);font-size:0.8rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--bone);margin-top:1.3rem}
+.dev-sub{font-size:1rem;color:var(--bone);margin-top:0.8rem;line-height:1.6;max-width:44ch;margin-left:auto;margin-right:auto}
+.dev-btn{margin-top:1.9rem;font-family:var(--f-mono);font-size:0.8rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;padding:0.95em 2.4em;background:var(--red);color:var(--pitch);border-radius:8px;cursor:pointer;transition:background .25s,transform .2s var(--ease)}
+.dev-btn:hover{background:#fff;transform:translateY(-2px)}
+.dev-hint{margin-top:1rem;font-family:var(--f-mono);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--bone-d)}
 </style>
 </head>
 <body>
@@ -463,8 +492,8 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
   <a href="#cta" class="menu-link" data-close>Contact <i>04</i></a>
   <a href="login.html" class="menu-link">Sign in <i>05</i></a>
   <div class="menu-foot">
-    <a href="#cta">hello@kreativby4knotts.com</a>
-    <span>Delhi NCR · India</span>
+    <a href="#cta">interact@kreativby4knotts.com</a>
+    <span>Noida, UP · India</span>
     <a href="https://www.instagram.com/kreativby4knotts" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/kreativby4knotts" target="_blank" rel="noopener">LinkedIn</a>
   </div>
 </div>
@@ -481,7 +510,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
   </div>
 
   <div class="hero-content">
-    <div class="hero-eyebrow"><span>Full-Stack Creative Agency · Delhi NCR</span></div>
+    <div class="hero-eyebrow"><span>Full-Stack Creative Agency · Noida, UP</span></div>
     <h1 class="hero-title" id="heroTitle" aria-label="Kreativ">
       <span class="ch-mask"><span class="ch">K</span></span><span class="ch-mask"><span class="ch">R</span></span><span class="ch-mask"><span class="ch">E</span></span><span class="ch-mask"><span class="ch">A</span></span><span class="ch-mask"><span class="ch">T</span></span><span class="ch-mask"><span class="ch">I</span></span><span class="ch-mask"><span class="ch">V</span></span>
     </h1>
@@ -567,10 +596,9 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
     <p class="r r-d2" style="max-width:48ch;color:var(--bone);font-size:0.95rem;margin-top:1.2rem;">Most agencies bolt on someone else's tools. We're engineering our own — a suite of proprietary AI products in active development, built in-house to run creative, education, and operations at scale.</p>
   </div>
   <div class="works-grid">
-    <article class="work r" data-work="0">
+    <article class="work r" data-work="0" data-dev="Kreativ AI">
       <div class="work-canvas-wrap">
-        <canvas class="work-canvas"></canvas>
-        <div class="work-fallback">KREATIV&nbsp;AI</div>
+        <img class="work-logo" src="/kreativ-ai.png" alt="Kreativ AI">
         <div class="work-idx">01</div>
         <div class="work-badge">In Development</div>
         <div class="work-view">View</div>
@@ -580,10 +608,9 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
         <div class="work-tags"><span class="work-tag">Platform</span><span class="work-tag">Multi-Agent</span><span class="work-tag">Desktop</span></div>
       </div>
     </article>
-    <article class="work r r-d1" data-work="1">
+    <article class="work r r-d1" data-work="1" data-dev="KnottBox">
       <div class="work-canvas-wrap">
-        <canvas class="work-canvas"></canvas>
-        <div class="work-fallback">KNOTTBOX</div>
+        <img class="work-logo" src="/knottbox.png" alt="KnottBox AI">
         <div class="work-idx">02</div>
         <div class="work-badge">In Development</div>
         <div class="work-view">View</div>
@@ -593,50 +620,23 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
         <div class="work-tags"><span class="work-tag">EdTech</span><span class="work-tag">B2B SaaS</span><span class="work-tag">Schools</span></div>
       </div>
     </article>
-    <article class="work r" data-work="2">
+    <article class="work r" data-work="2" data-dev="Knottix">
       <div class="work-canvas-wrap">
-        <canvas class="work-canvas"></canvas>
-        <div class="work-fallback">KNOTIX</div>
+        <img class="work-logo work-logo--screen" src="/knottix.png" alt="Knottix AI">
         <div class="work-idx">03</div>
         <div class="work-badge">In Development</div>
         <div class="work-view">View</div>
       </div>
       <div class="work-meta">
-        <h3 class="work-title">Knotix</h3>
+        <h3 class="work-title">Knottix</h3>
         <div class="work-tags"><span class="work-tag">Automation</span><span class="work-tag">Ops</span></div>
       </div>
     </article>
-    <article class="work r r-d1" data-work="3">
-      <div class="work-canvas-wrap">
-        <canvas class="work-canvas"></canvas>
-        <div class="work-fallback">AI&nbsp;TEAM</div>
-        <div class="work-idx">04</div>
-        <div class="work-badge">In Development</div>
-        <div class="work-view">View</div>
-      </div>
-      <div class="work-meta">
-        <h3 class="work-title">AI Employee Suite</h3>
-        <div class="work-tags"><span class="work-tag">Agents</span><span class="work-tag">Workflow</span></div>
-      </div>
-    </article>
-    <article class="work r" data-work="4">
-      <div class="work-canvas-wrap">
-        <canvas class="work-canvas"></canvas>
-        <div class="work-fallback">PITCH&nbsp;AI</div>
-        <div class="work-idx">05</div>
-        <div class="work-badge">In Development</div>
-        <div class="work-view">View</div>
-      </div>
-      <div class="work-meta">
-        <h3 class="work-title">PitchEngine</h3>
-        <div class="work-tags"><span class="work-tag">Decks</span><span class="work-tag">Strategy</span></div>
-      </div>
-    </article>
-    <article class="work r r-d1" data-work="5">
+    <article class="work r r-d1" data-work="3" data-dev="More in the Lab">
       <div class="work-canvas-wrap">
         <canvas class="work-canvas"></canvas>
         <div class="work-fallback">MORE&nbsp;SOON</div>
-        <div class="work-idx">06</div>
+        <div class="work-idx">04</div>
         <div class="work-badge">In Development</div>
         <div class="work-view">View</div>
       </div>
@@ -741,7 +741,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
         <button class="connect-row" id="copyEmail" data-magnetic>
           <div class="cr-left">
             <div class="cr-icon">@</div>
-            <div class="cr-meta"><span class="cr-label">Email</span><span class="cr-handle" id="emailHandle">hello@kreativby4knotts.com</span></div>
+            <div class="cr-meta"><span class="cr-label">Email</span><span class="cr-handle" id="emailHandle">interact@kreativby4knotts.com</span></div>
           </div>
           <div class="cr-arrow" id="copyArrow">copy</div>
         </button>
@@ -749,7 +749,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
         <div class="connect-row connect-row--static">
           <div class="cr-left">
             <div class="cr-icon">⌖</div>
-            <div class="cr-meta"><span class="cr-label">Studio</span><span class="cr-handle">Delhi NCR · India</span></div>
+            <div class="cr-meta"><span class="cr-label">Studio</span><span class="cr-handle">Noida, UP · India</span></div>
           </div>
           <div class="cr-time" id="connectTime">—</div>
         </div>
@@ -773,11 +773,11 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
     <div class="foot-cols">
       <div class="foot-col"><h4>Navigate</h4><a href="#works">AI Lab</a><a href="#pillars">Pillars</a><a href="#process">Process</a><a href="#cta">Contact</a></div>
       <div class="foot-col"><h4>Connect</h4><a href="https://www.instagram.com/kreativby4knotts" target="_blank" rel="noopener">Instagram</a><a href="https://www.linkedin.com/company/kreativby4knotts" target="_blank" rel="noopener">LinkedIn</a><a href="#cta">Email</a></div>
-      <div class="foot-col"><h4>Studio</h4><p>Delhi NCR</p><p>India</p><p>Mon–Sat</p></div>
+      <div class="foot-col"><h4>Studio</h4><p>Noida, UP</p><p>India</p><p>Mon–Sat</p></div>
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2025 4Knotts Brand House. All rights reserved.</span>
+    <span>© 2026 4Knotts Brand House. All rights reserved.</span>
     <span>Designed & built in-house — the proof is this page.</span>
   </div>
 </footer>
@@ -1284,7 +1284,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
     const terminal=document.getElementById('terminal');
     if(!out||!inp||!terminal) return;
 
-    const EMAIL='hello@kreativby4knotts.com';
+    const EMAIL='interact@kreativby4knotts.com';
     const history=[]; let hIdx=-1; let buffer=''; let booted=false; let busy=false;
     let bootLines=null, bootTimer=null;
 
@@ -1359,7 +1359,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
       contact(){ return [
         '<span class="c-bone">// reach the studio</span>',
         '  email   : <span class="c-red">'+EMAIL+'</span>',
-        '  studio  : Delhi NCR · India',
+        '  studio  : Noida, UP · India',
         '  hours   : Mon–Sat · 10:00–19:00 IST',
         '<span class="c-dim">  tip: click the Email tile on the right to copy →</span>',
         '&nbsp;'
@@ -1374,7 +1374,7 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
       about(){ return [
         '<span class="c-white">KREATIV by 4Knotts</span>',
         '<span class="c-bone">A full-stack creative agency + AI lab,</span>',
-        '<span class="c-bone">part of the 4Knotts brand house. Delhi NCR.</span>',
+        '<span class="c-bone">part of the 4Knotts brand house. Noida, UP.</span>',
         '<span class="c-bone">Strategy · Story · Design · Digital — under one roof.</span>',
         '&nbsp;'
       ];},
@@ -1481,6 +1481,33 @@ footer { position: relative; z-index: 2; background: var(--ink); padding: clamp(
   if(loader){ runLoader(()=>{ loader.classList.add('done'); boot(); }); }
   else boot();
 
+})();
+</script>
+
+<!-- ══ IN DEVELOPMENT glitch popup ══ -->
+<div class="dev-ov" id="devModal" role="dialog" aria-modal="true" aria-label="In development">
+  <div class="dev-inner">
+    <div class="dev-code">System · access denied</div>
+    <div class="dev-glitch" data-text="IN DEVELOPMENT" id="devTitle">IN DEVELOPMENT</div>
+    <div class="dev-proj" id="devProj">Kreativ AI</div>
+    <p class="dev-sub">This product is still being engineered in the Kreativ AI Lab. We're not ready to show it just yet.</p>
+    <button class="dev-btn" type="button" id="devClose">Keep exploring</button>
+    <div class="dev-hint">[ ESC / click anywhere to close ]</div>
+  </div>
+</div>
+<script>
+(function(){
+  var ov=document.getElementById('devModal'); if(!ov) return;
+  var proj=document.getElementById('devProj');
+  function open(name){ if(proj&&name) proj.textContent=name; ov.classList.add('open'); document.body.style.overflow='hidden'; }
+  function close(){ ov.classList.remove('open'); document.body.style.overflow=''; }
+  document.querySelectorAll('.work[data-dev]').forEach(function(card){
+    card.style.cursor='pointer';
+    card.addEventListener('click', function(){ open(card.getAttribute('data-dev')); });
+  });
+  document.getElementById('devClose').addEventListener('click', close);
+  ov.addEventListener('click', function(e){ if(e.target===ov) close(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && ov.classList.contains('open')) close(); });
 })();
 </script>
 </body>
