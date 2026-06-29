@@ -168,3 +168,11 @@
 .underline-anim:hover::after {
   width: 100%;
 }
+
+.reveal,
+[data-reveal],
+.hidden-until-ready {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
